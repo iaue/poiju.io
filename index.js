@@ -18,3 +18,17 @@ app.listen(app.get('port'), function() {
 });
 
 
+var ProxyCache = require( 'node-proxy-cache' ),
+    proxyCache = new ProxyCache({}),
+    DS = {};
+    
+proxyCache.when( /mapbox/, {
+    cacheTime: function( cacheEntry, req, proxyRes ) {
+    	console.log( "cached request" )
+        return 0; // cache forever
+    }  
+});
+ 
+proxyCache.listen( 9000 ); // listen on port
+
+console.log( "proxy started" )
