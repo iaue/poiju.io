@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html style="margin: 0px; width: 100%; height: 100%;">
+<head>
+	<title>Nässy plotter</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.19.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.19.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body style="margin: 0px; width: 100%; height: 100%;">
+	<div id="map" style="margin: 0px; width: 100%; height: 100%;"></div>
+
+	<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+	  var map = new mapboxgl.Map({
+	      container: 'map',
+	      style: 'mapbox://styles/milkandcream/ciowqs054000uqmmald86hbka'
+	  });
+
+	  var pos = []
+	  // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            console.log(pos)
+
+            map.setCenter(pos);
+
+          }, function() {
+            handleLocationError(true);
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false);
+      }
+      
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        console.log(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+
+	</script>
+</body>
+</html>
