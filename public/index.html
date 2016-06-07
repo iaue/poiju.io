@@ -24,6 +24,10 @@
 
 	  var pos = []
 
+    var source = new mapboxgl.GeoJSONSource({
+      data: {"geometry": {"type": "Point", "coordinates": [23.783832999999998, 61.503015399999995]}, "type": "Feature", "properties": {}}
+    });
+
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       window.setInterval(function() {
@@ -38,6 +42,8 @@
             console.log(pos)
 
             map.setCenter(pos);
+
+            source.setData({"geometry": {"type": "Point", "coordinates": [23.783832999999998, 61.503015399999995]}, "type": "Feature", "properties": {}})
 
           }, function() {
             handleLocationError(true);
@@ -61,10 +67,6 @@
 
   map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
   map.addControl(new mapboxgl.Geolocate({position: 'top-left'}));
-
-  var source = new mapboxgl.GeoJSONSource({
-    data: {"geometry": {"type": "Point", "coordinates": [23.783832999999998, 61.503015399999995]}, "type": "Feature", "properties": {}}
-  });
 
   map.on('load', function () {
       map.addSource('drone', source);
