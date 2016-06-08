@@ -28,19 +28,6 @@
       data: {"geometry": {"type": "Point", "coordinates": [23.783832999999998, 61.503015399999995]}, "type": "Feature", "properties": {}}
     });
 
-    map.on('load', function () {
-      console.log( "loaded" )
-      map.addSource('drone', source);
-      map.addLayer({
-          "id": "drone",
-          "type": "symbol",
-          "source": "drone",
-          "layout": {
-              "icon-image": "ferry-15",
-          }
-      });
-    });
-
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       window.setInterval(function() {
@@ -78,6 +65,18 @@
 
   map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
   map.addControl(new mapboxgl.Geolocate({position: 'top-left'}));
+
+  map.on('load', function () {
+      map.addSource('drone', source);
+      map.addLayer({
+          "id": "drone",
+          "type": "symbol",
+          "source": "drone",
+          "layout": {
+              "icon-image": "ferry-15",
+          }
+      });
+  });
 
 	</script>
 </body>
