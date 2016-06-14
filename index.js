@@ -7,7 +7,7 @@ var localCache = new Cache();
 //localStorage.clear();
 
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 8000));
 
 app.use(express.static(__dirname + '/public'));
 

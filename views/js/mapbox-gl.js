@@ -7113,7 +7113,7 @@
         95: [function(require, module, exports) {
             "use strict";
             module.exports = {
-                API_URL: "http://localhost:5000/api",//"https://api.mapbox.com",//
+                API_URL: "<%= 'http://localhost:8000/api' %>" ,//"https://api.mapbox.com",//
                 REQUIRE_ACCESS_TOKEN: !0
             };
         }, {}],
