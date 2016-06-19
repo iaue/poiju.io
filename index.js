@@ -2,9 +2,13 @@ var express = require('express');
 var app = express();
 var apiRequest = require('sync-request');
 var Cache = require( 'tiny-cache' );
-var localStorage = require('localStorage');
+//var localStorage = require('localStorage');
+var md5 = require('js-md5')
 var localCache = new Cache();
 //localStorage.clear();
+
+// Set cache on:
+var cacheOn = true;
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -45,10 +49,14 @@ app.get( /\/api.*/, function(request, originalRes ) {
 
 	// CACHE WARMUP END
 	*/
-	var response = localCache.getItem( apiUrl );
+
+	var apiUrlHash = md5( apiUrl )
+
+	// Load response from cache:
+	var response = cacheOn ? localCache.getItem( apiUrlHash ) : undefined;
 
 	if ( response ) {
-		console.log( "From cache" )
+		console.log( "From cache: " + apiUrlHash )
 		originalRes.send( response )
 	}
 
@@ -58,9 +66,14 @@ app.get( /\/api.*/, function(request, originalRes ) {
 		});
 
 		if ( res.statusCode = 200 ) {
-			console.log( "Store to cache" )
 			response = res.getBody();
-			localCache.setItem( apiUrl , response );
+
+			// Cache response:
+			if ( cacheOn ) {
+				console.log( "Store to cache" )
+				localCache.setItem( apiUrlHash , response );
+			}
+
 			originalRes.send( response );
 		}
 
