@@ -7,7 +7,7 @@ var localCache = new Cache();
 //localStorage.clear();
 
 
-app.set('port', (process.env.PORT || 8000));
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -16,7 +16,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
+	var localApi = request.protocol + '://' + request.get('host') + '/api'
+	response.render('pages/index' , { localApi : localApi });
 });
 
 app.get( /\/api.*/, function(request, originalRes ) {
