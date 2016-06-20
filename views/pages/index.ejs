@@ -33,6 +33,15 @@
 
 
   <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
+  <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
+  <script src="js/addtohomescreen.js"></script>
+  <script>
+  addToHomescreen({
+   skipFirstVisit: true,
+   maxDisplayCount: 1,
+   startDelay: 5
+  });
+  </script>
 </head>
 <body style="margin: 0px; width: 100%; height: 100%;">
   <div id="map" style="margin: 0px; width: 100%; height: 100%;"></div>
