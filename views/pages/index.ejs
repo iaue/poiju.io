@@ -102,7 +102,21 @@ var spinner = new Spinner(opts).spin(target);
                   },
                   "properties": {
                       "title": "",
-                      "marker-symbol": "ferry"
+                      "marker-symbol": "ferry-15"
+                  }
+              } )
+  }
+
+  function locationErrorMarker() {
+    map.getSource('boat').setData( {
+                  "type": "Feature",
+                  "geometry": {
+                      "type": "Point",
+                      "coordinates": coordinates
+                  },
+                  "properties": {
+                      "title": "",
+                      "marker-symbol": "cross-11"
                   }
               } )
   }
@@ -129,6 +143,7 @@ var spinner = new Spinner(opts).spin(target);
   
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    locationErrorMarker()
     console.log(browserHasGeolocation ?
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
@@ -152,7 +167,7 @@ var spinner = new Spinner(opts).spin(target);
             },
             "properties": {
                 "title": "",
-                "marker-symbol": "ferry"
+                "marker-symbol": "cross-11"
             }
           }
       });
@@ -162,7 +177,7 @@ var spinner = new Spinner(opts).spin(target);
           "type": "symbol",
           "source": "boat",
           "layout": {
-              "icon-image": "{marker-symbol}-15",
+              "icon-image": "{marker-symbol}",
               "text-field": "{title}",
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
               "text-offset": [0, 0.6],
