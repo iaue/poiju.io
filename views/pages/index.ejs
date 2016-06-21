@@ -132,6 +132,7 @@ var spinner = new Spinner(opts).spin(target);
     console.log(browserHasGeolocation ?
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
+    spinner.stop();
   }
 
   map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
