@@ -91,7 +91,7 @@ var spinner = new Spinner(opts).spin(target);
       style: 'mapbox://styles/milkandcream/ciowqs054000uqmmald86hbka'
   });
 
-  var pos = []
+  var pos = [23.783832999999998, 61.503015399999995]
 
   function updateMarkerPosition( coordinates ) {
     map.getSource('boat').setData( {
@@ -112,7 +112,7 @@ var spinner = new Spinner(opts).spin(target);
                   "type": "Feature",
                   "geometry": {
                       "type": "Point",
-                      "coordinates": coordinates
+                      "coordinates": pos
                   },
                   "properties": {
                       "title": "",
@@ -163,7 +163,7 @@ var spinner = new Spinner(opts).spin(target);
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [23.783832999999998, 61.503015399999995]
+                "coordinates": pos
             },
             "properties": {
                 "title": "",
