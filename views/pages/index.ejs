@@ -31,14 +31,18 @@
 
   <!-- Favicons end -->
 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
 
   <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
   <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
   <script src="js/addtohomescreen.js"></script>
   <script>
   addToHomescreen({
+    modal: 1,
    skipFirstVisit: true,
-   maxDisplayCount: 1,
+   maxDisplayCount: 5,
    startDelay: 5
   });
   </script>
