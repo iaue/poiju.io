@@ -1,4 +1,5 @@
 var express = require('express');
+var sslRedirect = require('heroku-ssl-redirect');
 var app = express();
 var apiRequest = require('sync-request');
 var Cache = require( 'tiny-cache' );
@@ -8,20 +9,22 @@ var localCache = new Cache();
 
 var http = require('http');
 
-var https = require('https');
+/*var https = require('https');
 var key = process.env.POIJU_SSL_KEY; //key.pem
 var cert = process.env.POIJU_SSL_CERT; //cert.pem
 
 var https_options = {
     key: key,
     cert: cert
-};
+};*/
 
 //localStorage.clear();
 
 // Set cache on:
 var cacheOn = true;
 
+// enable ssl redirect
+app.use(sslRedirect());
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -111,5 +114,5 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-http.createServer(app).listen(5555);
-https.createServer(https_options, app).listen(process.env.PORT || 5000);
+http.createServer(app).listen(process.env.PORT || 5000);
+//https.createServer(https_options, app).listen(5555);
