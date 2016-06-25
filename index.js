@@ -109,4 +109,4 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-https.createServer(https_options, app).listen(process.env.POIJU_SSL_PORT || 5555);
+https.createServer(https_options, app).listen(process.env.PORT || 5555);
