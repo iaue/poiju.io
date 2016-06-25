@@ -9,14 +9,14 @@ var localCache = new Cache();
 
 var http = require('http');
 
-/*var https = require('https');
+var https = require('https');
 var key = process.env.POIJU_SSL_KEY; //key.pem
 var cert = process.env.POIJU_SSL_CERT; //cert.pem
 
 var https_options = {
     key: key,
     cert: cert
-};*/
+};
 
 //localStorage.clear();
 
@@ -35,7 +35,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-	var localApi = request.protocol + '://' + request.get('host') + '/api'
+	var localApi = 'https://' + request.get('host') + '/api'
 	console.log( localApi )
 	response.render('pages/index' , { localApi : localApi });
 });
@@ -115,4 +115,4 @@ app.get( /\/api.*/, function(request, originalRes ) {
 });
 
 http.createServer(app).listen(process.env.PORT || 5000);
-//https.createServer(https_options, app).listen(5555);
+https.createServer(https_options, app).listen(5555);
