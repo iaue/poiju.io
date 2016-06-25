@@ -19,8 +19,6 @@ var https_options = {
 
 //localStorage.clear();
 
-console.log( "port: " + process.env.PORT )
-
 // Set cache on:
 var cacheOn = true;
 
@@ -114,4 +112,4 @@ app.get( /\/api.*/, function(request, originalRes ) {
 });
 
 https.createServer(https_options, app).listen(process.env.PORT || 5000);
-http.createServer(app).listen(8000);
+http.createServer(app).listen(5555);
