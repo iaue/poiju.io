@@ -5,6 +5,16 @@ var Cache = require( 'tiny-cache' );
 //var localStorage = require('localStorage');
 var md5 = require('js-md5')
 var localCache = new Cache();
+
+var https = require('https');
+var key = process.env.POIJU_SSL_KEY; //key.pem
+var cert = process.env.POIJU_SSL_CERT; //cert.pem
+
+var https_options = {
+    key: key,
+    cert: cert
+};
+
 //localStorage.clear();
 
 // Set cache on:
@@ -99,6 +109,4 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+https.createServer(https_options, app).listen(process.env.PORT || 5000);
