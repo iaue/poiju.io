@@ -32,7 +32,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-	var localApi = /*request.protocol + */'https://' + request.get('host') + '/api'
+	var localApi = request.protocol + '://' + request.get('host') + '/api'
 	console.log( localApi )
 	response.render('pages/index' , { localApi : localApi });
 });
@@ -111,5 +111,5 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-http.createServer(app).listen(process.env.PORT || 5000);
-https.createServer(https_options, app).listen(5555);
+https.createServer(https_options, app).listen(process.env.PORT || 5000);
+http.createServer(app).listen(5555);
