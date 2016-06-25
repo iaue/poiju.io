@@ -6,6 +6,7 @@ var Cache = require( 'tiny-cache' );
 var md5 = require('js-md5')
 var localCache = new Cache();
 
+var http = require('http');
 var https = require('https');
 var key = process.env.POIJU_SSL_KEY; //key.pem
 var cert = process.env.POIJU_SSL_CERT; //cert.pem
@@ -109,4 +110,5 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-https.createServer(https_options, app).listen(process.env.PORT || 5555);
+
+https.createServer(https_options, app).listen(process.env.PORT || 5000);
