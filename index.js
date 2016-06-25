@@ -32,7 +32,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-	var localApi = request.protocol + '://' + request.get('host') + '/api'
+	var localApi = /*request.protocol + */'https://' + request.get('host') + '/api'
 	console.log( localApi )
 	response.render('pages/index' , { localApi : localApi });
 });
