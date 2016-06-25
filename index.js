@@ -111,5 +111,5 @@ app.get( /\/api.*/, function(request, originalRes ) {
 	})*/
 });
 
-https.createServer(https_options, app).listen(process.env.PORT || 5000);
-http.createServer(app).listen(5555);
+http.createServer(app).listen(process.env.PORT || 5000);
+https.createServer(https_options, app).listen(5555);
