@@ -65,7 +65,11 @@
   var maxBounds = [
     [ 18.708052 , 58.714757 ], // Southwest coordinates
     [ 31.847700 , 70.343238 ]  // Northeast coordinates
-];
+  ];
+
+  // Try to avoid crashing:
+  var minZoom = 10;
+
   mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
 
 
@@ -133,7 +137,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       style: 'mapbox://styles/milkandcream/cippn0jli0049djnufgektsft',
       center: initialPosition,
       zoom: 12,
-      maxBounds: maxBounds
+      maxBounds: maxBounds,
+      minZoom: minZoom
   });
 
   // Update marker position and map center:
