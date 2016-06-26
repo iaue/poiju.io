@@ -1,0 +1,23 @@
+{
+  "name": "poijuio",
+  "description": "Marine navigation",
+  "main": "index.js",
+  "authors": [
+    "Ilkka Auer <ilkka.auer@futurice.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "homepage": "https://github.com/iaue/plotter-server",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

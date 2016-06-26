@@ -55,6 +55,8 @@
   <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
   <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
   <script src="js/addtohomescreen.js"></script>
+  <script src="components/local-storage-js/storage.min.js"></script>
+
   <script>
   addToHomescreen({
     modal: 1,
@@ -116,9 +118,10 @@ var spinner = new Spinner(opts).spin(target);
       style: 'mapbox://styles/milkandcream/cippn0jli0049djnufgektsft'
   });
 
-  var pos = [23.783832999999998, 61.503015399999995]
-
   function updateMarkerPosition( coordinates ) {
+    localStorage.setItem( 'lastLong', coordinates[0] )
+    localStorage.setItem( 'lastLat', coordinates[1] )
+
     map.getSource('boat').setData( {
                   "type": "Feature",
                   "geometry": {
@@ -132,7 +135,10 @@ var spinner = new Spinner(opts).spin(target);
               } )
   }
 
+  // Set error marker on map if geolocation fails:
   function locationErrorMarker() {
+    var pos = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ]
+    
     map.getSource('boat').setData( {
                   "type": "Feature",
                   "geometry": {
@@ -146,10 +152,11 @@ var spinner = new Spinner(opts).spin(target);
               } )
   }
 
+  // Get new geolocation:
   function updateLocation() {
 
     navigator.geolocation.getCurrentPosition(function(position) {
-      pos = [ position.coords.longitude, position.coords.latitude ];
+      var pos = [ position.coords.longitude, position.coords.latitude ];
 
       // Update boat marker position on map:
       updateMarkerPosition( pos );
@@ -163,7 +170,7 @@ var spinner = new Spinner(opts).spin(target);
     });
   }
   
-
+  // Error handling if geolocation fails:
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     locationErrorMarker()
     console.log(browserHasGeolocation ?
@@ -179,20 +186,26 @@ var spinner = new Spinner(opts).spin(target);
 
   map.on('load', function () {
 
-      map.addSource("boat", {
-          "type": "geojson",
-          "data": {
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": pos
-            },
-            "properties": {
-                "title": "",
-                "marker-symbol": "cross-11"
-            }
+    var pos = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ];
+
+    map.flyTo({
+        center: pos
+    });
+
+    map.addSource("boat", {
+        "type": "geojson",
+        "data": {
+          "type": "Feature",
+          "geometry": {
+              "type": "Point",
+              "coordinates": pos
+          },
+          "properties": {
+              "title": "",
+              "marker-symbol": "cross-15"
           }
-      });
+        }
+    });
 
       map.addLayer({
           "id": "boat",
@@ -207,7 +220,7 @@ var spinner = new Spinner(opts).spin(target);
           }
       });
 
-      // Try HTML5 geolocation.
+      // Try HTML5 geolocation:
       if (navigator.geolocation) {
 
         // Load initial location:
