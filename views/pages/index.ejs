@@ -224,8 +224,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       // Update boat marker position on map:
       updateMarkerPosition( pos );
       spinner.stop();
+
       var elem = document.getElementById("splash-screen");
-      elem.remove();
+      if ( elem ) {
+        elem.remove();
+      }
 
     }, function() {
       handleLocationError(true);
@@ -242,8 +245,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
     spinner.stop();
+    
     var elem = document.getElementById("splash-screen");
-    elem.remove();
+    if ( elem ) {
+      elem.remove();
+    }
   }
 
   map.addControl(new mapboxgl.Navigation({position: 'top-right'}));
