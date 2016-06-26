@@ -14,3 +14,4 @@ List of packages and services in use:
 - Tile cache hashing: https://www.npmjs.com/package/js-md5
 - Application favicons: http://realfavicongenerator.net/
 - SSL signing: https://www.cloudflare.com/
+- Heroku SSL redirect: https://www.npmjs.com/package/heroku-ssl-redirect
