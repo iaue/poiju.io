@@ -4,13 +4,13 @@
 - Mapbox GL JS
 
 
-Current coverage: Lake Näsijärvi, Tampere, Finland
+Current coverage: Finnish sea and lake areas
 
 List of packages and services in use:
-http://cubiq.org/add-to-home-screen
-http://spin.js.org/
-https://www.mapbox.com/mapbox-gl-js/api/
-https://www.npmjs.com/package/tiny-cache
-https://www.npmjs.com/package/js-md5
-http://realfavicongenerator.net/
-
+- Add to home screen: http://cubiq.org/add-to-home-screen
+- Loading spinner: http://spin.js.org/
+- Map tiles: https://www.mapbox.com/mapbox-gl-js/api/
+- Tile caching: https://www.npmjs.com/package/tiny-cache
+- Tile cache hashing: https://www.npmjs.com/package/js-md5
+- Application favicons: http://realfavicongenerator.net/
+- SSL signing: https://www.cloudflare.com/
