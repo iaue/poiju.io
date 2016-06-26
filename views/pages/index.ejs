@@ -58,6 +58,13 @@
   <script src="components/local-storage-js/storage.min.js"></script>
 
   <script>
+
+  // SETTINGS:
+  var defaultLocation = [ 23.772788 , 61.509346 ]
+  var locationUpdateInterval = 3000;
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+
+
   addToHomescreen({
     modal: 1,
    skipFirstVisit: true,
@@ -107,13 +114,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   var target = document.getElementById('map')
   var spinner = new Spinner(opts).spin(target);
-
   /* Spinner end */
 
-  var locationUpdateInterval = 3000;
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+  localStorage.clear()
 
-  var initialPosition = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ];
+  var mapInitialized = false;
+
+  // Init position from last location:
+  var initialPosition = [ localStorage.getItem('lastLong') || defaultLocation[0] , localStorage.getItem('lastLat') || defaultLocation[1] ];
 
   var map = new mapboxgl.Map({
       attributionControl : false,
@@ -123,9 +131,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       zoom: 12
   });
 
+  // Update marker position and map center:
   function updateMarkerPosition( coordinates ) {
     localStorage.setItem( 'lastLong', coordinates[0] )
     localStorage.setItem( 'lastLat', coordinates[1] )
+
+    // Center map on first load:
+    if ( !mapInitialized )
+    {
+      map.setCenter( coordinates )
+      mapInitialized = true;
+    }
 
     map.getSource('boat').setData( {
                   "type": "Feature",
@@ -142,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   // Set error marker on map if geolocation fails:
   function locationErrorMarker() {
-    var pos = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ]
+    var pos = [ localStorage.getItem('lastLong') || defaultLocation[0] , localStorage.getItem('lastLat') || defaultLocation[1] ]
     
     map.getSource('boat').setData( {
                   "type": "Feature",
@@ -191,7 +207,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   map.on('load', function () {
 
-    var pos = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ];
+    var pos = [ localStorage.getItem('lastLong') || defaultLocation[0] , localStorage.getItem('lastLat') || defaultLocation[1] ];
 
     map.addSource("boat", {
         "type": "geojson",
