@@ -2,9 +2,9 @@
 <html style="margin: 0px; width: 100%; height: 100%;" prefix="og: http://ogp.me/ns#">
 <head>
 
-  <title>POIJU.IO - Merikartat koko Suomen alueelle</title>
+  <title>POIJU.IO - Ilmaiset merikartat koko Suomen alueelle</title>
   <meta property="og:title" content="POIJU.IO" />
-  <meta property="og:description" content="POIJU.IO - Merikartat koko Suomen alueelle. Toimii myös mobiililaitteilla home screenille asennettuna webappina!" />
+  <meta property="og:description" content="POIJU.IO - Ilmaiset merikartat koko Suomen alueelle. Toimii myös mobiililaitteilla home screenille asennettuna webappina!" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.poiju.io/" />
   <meta property="og:image" content="http://www.poiju.io/poiju-logo.png" />
@@ -91,32 +91,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5S5TFX');</script>
 <!-- End Google Tag Manager -->
-
-  <script>
-    window.fbAsyncInit = function() {
-      FB.Event.subscribe(
-        'ad.loaded',
-        function(placementId) {
-          console.log('Audience Network ad loaded');
-        }
-      );
-      FB.Event.subscribe(
-        'ad.error',
-        function(errorCode, errorMessage, placementId) {
-          console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
-        }
-      );
-    };
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=1217568344949951";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-  <div class="fb-ad" data-placementid="1217568344949951_1218253864881399" data-format="320x50" style="z-index: 1; position: absolute; right: 0; bottom: 0;" data-testmode="false"></div>
 
   <div id="map" style="margin: 0px; width: 100%; height: 100%;"></div>
   
@@ -245,7 +219,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
     spinner.stop();
-    
+
     var elem = document.getElementById("splash-screen");
     if ( elem ) {
       elem.remove();
