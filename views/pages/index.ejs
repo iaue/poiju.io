@@ -83,39 +83,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Spinner start */
   var opts = {
-    lines: 12 // The number of lines to draw
-  , length: 26 // The length of each line
-  , width: 12 // The line thickness
-  , radius: 40 // The radius of the inner circle
-  , scale: 0.5 // Scales overall size of the spinner
-  , corners: 1 // Corner roundness (0..1)
-  , color: '#000' // #rgb or #rrggbb or array of colors
-  , opacity: 0.25 // Opacity of the lines
-  , rotate: 0 // The rotation offset
-  , direction: 1 // 1: clockwise, -1: counterclockwise
-  , speed: 1 // Rounds per second
-  , trail: 60 // Afterglow percentage
-  , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-  , zIndex: 2e9 // The z-index (defaults to 2000000000)
-  , className: 'spinner' // The CSS class to assign to the spinner
-  , top: '50%' // Top position relative to parent
-  , left: '50%' // Left position relative to parent
-  , shadow: true // Whether to render a shadow
-  , hwaccel: false // Whether to use hardware acceleration
-  , position: 'absolute' // Element positioning
-}
+      lines: 12 // The number of lines to draw
+    , length: 26 // The length of each line
+    , width: 12 // The line thickness
+    , radius: 40 // The radius of the inner circle
+    , scale: 0.5 // Scales overall size of the spinner
+    , corners: 1 // Corner roundness (0..1)
+    , color: '#000' // #rgb or #rrggbb or array of colors
+    , opacity: 0.25 // Opacity of the lines
+    , rotate: 0 // The rotation offset
+    , direction: 1 // 1: clockwise, -1: counterclockwise
+    , speed: 1 // Rounds per second
+    , trail: 60 // Afterglow percentage
+    , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+    , className: 'spinner' // The CSS class to assign to the spinner
+    , top: '50%' // Top position relative to parent
+    , left: '50%' // Left position relative to parent
+    , shadow: true // Whether to render a shadow
+    , hwaccel: false // Whether to use hardware acceleration
+    , position: 'absolute' // Element positioning
+  }
 
-var target = document.getElementById('map')
-var spinner = new Spinner(opts).spin(target);
+  var target = document.getElementById('map')
+  var spinner = new Spinner(opts).spin(target);
 
-/* Spinner end */
+  /* Spinner end */
 
   var locationUpdateInterval = 3000;
   mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+
+  var initialPosition = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ];
+
   var map = new mapboxgl.Map({
       attributionControl : false,
       container: 'map',
-      style: 'mapbox://styles/milkandcream/cippn0jli0049djnufgektsft'
+      style: 'mapbox://styles/milkandcream/cippn0jli0049djnufgektsft',
+      center: initialPosition,
+      zoom: 12
   });
 
   function updateMarkerPosition( coordinates ) {
@@ -188,10 +193,6 @@ var spinner = new Spinner(opts).spin(target);
 
     var pos = [ localStorage.getItem('lastLong') || 23.783832999999998 , localStorage.getItem('lastLat') || 61.503015399999995 ];
 
-    map.flyTo({
-        center: pos
-    });
-
     map.addSource("boat", {
         "type": "geojson",
         "data": {
@@ -207,36 +208,36 @@ var spinner = new Spinner(opts).spin(target);
         }
     });
 
-      map.addLayer({
-          "id": "boat",
-          "type": "symbol",
-          "source": "boat",
-          "layout": {
-              "icon-image": "{marker-symbol}",
-              "text-field": "{title}",
-              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-              "text-offset": [0, 0.6],
-              "text-anchor": "top"
-          }
-      });
+    map.addLayer({
+        "id": "boat",
+        "type": "symbol",
+        "source": "boat",
+        "layout": {
+            "icon-image": "{marker-symbol}",
+            "text-field": "{title}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
 
-      // Try HTML5 geolocation:
-      if (navigator.geolocation) {
+    // Try HTML5 geolocation:
+    if (navigator.geolocation) {
 
-        // Load initial location:
-        updateLocation();
+      // Load initial location:
+      updateLocation();
 
-        // Set interval for updating marker position:
-        window.setInterval(function() {
-            
-            updateLocation();
+      // Set interval for updating marker position:
+      window.setInterval(function() {
+          
+          updateLocation();
 
-        }, locationUpdateInterval );
+      }, locationUpdateInterval );
 
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false);
-      }
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false);
+    }
   });
 
   </script>
