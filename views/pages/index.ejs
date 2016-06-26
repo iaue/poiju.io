@@ -119,7 +119,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="fb-ad" data-placementid="1217568344949951_1218253864881399" data-format="320x50" style="z-index: 1; position: absolute; right: 0; bottom: 0;" data-testmode="false"></div>
 
   <div id="map" style="margin: 0px; width: 100%; height: 100%;"></div>
-
+  
+  <!-- Splash screen -->
+  <div id="splash-screen" style="margin: 0px; width: 100%; height: 100%; z-index: 2;  background: black; top: 0; left: 0; position: absolute;">
+    <div style="display:flex;justify-content:center;align-items:center;">
+      <div style="width:320px;height:460px;"><img src="/poiju-splash.png"/></div>
+    </div>
+  </div>
   <script>
 
   /* Spinner start */
@@ -130,14 +136,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     , radius: 40 // The radius of the inner circle
     , scale: 0.5 // Scales overall size of the spinner
     , corners: 1 // Corner roundness (0..1)
-    , color: '#000' // #rgb or #rrggbb or array of colors
+    , color: '#fff' // #rgb or #rrggbb or array of colors
     , opacity: 0.25 // Opacity of the lines
     , rotate: 0 // The rotation offset
     , direction: 1 // 1: clockwise, -1: counterclockwise
     , speed: 1 // Rounds per second
     , trail: 60 // Afterglow percentage
     , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+    , zIndex: 3 // The z-index (defaults to 2000000000)
     , className: 'spinner' // The CSS class to assign to the spinner
     , top: '50%' // Top position relative to parent
     , left: '50%' // Left position relative to parent
@@ -218,6 +224,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       // Update boat marker position on map:
       updateMarkerPosition( pos );
       spinner.stop();
+      var elem = document.getElementById("splash-screen");
+      elem.remove();
 
     }, function() {
       handleLocationError(true);
@@ -234,6 +242,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                           'Error: The Geolocation service failed.' :
                           'Error: Your browser doesn\'t support geolocation.');
     spinner.stop();
+    var elem = document.getElementById("splash-screen");
+    elem.remove();
   }
 
   map.addControl(new mapboxgl.Navigation({position: 'top-right'}));
