@@ -54,6 +54,7 @@
 
   <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
   <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
+  <link href='stylesheets/main.css' rel='stylesheet' />
   <link href='components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
   <link href='components/sidr/dist/stylesheets/jquery.sidr.dark.min.css' rel='stylesheet' />
   <link href='stylesheets/tether.min.css' rel='stylesheet' />
@@ -119,11 +120,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div id="sidr">
     <!-- Your content -->
+    <img width="260" src="poiju-logo-menu.png">
     <ul>
-      <li><img width="260" src="poiju-logo-small.png"></li>
       <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + ' Lat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
       <li><a onClick="alert( 'Kartta-aineiston lähde: Liikennevirasto. Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.' );">Lisenssitiedot</a></li>
     </ul>
+    <div style='margin: 10px 0 0 15px;'>
+      <table>
+        <thead><strong>Merimerkit:</strong></thead>
+        <tr>
+          <td width="30" align="center"  ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_N.svg" width="20"/></td><td>Pohjoisviitta</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_S.svg" width="20"/></td><td>Eteläviitta</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_E.svg" width="20"/></td><td>Itäviitta</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_W.svg" width="20"/></td><td>Länsiviitta</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><span style="color: green;" width="20">•</span></td><td>Oikea</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><span style="color: red;" width="20">•</span></td><td>Vasen</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><img src="diagrams/lighthouse-15.svg" width="20"/></td><td>Loisto</td>
+        </tr>
+        <tr>
+          <td width="30" align="center" ><img src="diagrams/monument-15.svg" width="20"></td><td>Kummeli</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
   <script>

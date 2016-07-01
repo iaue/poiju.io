@@ -25,3 +25,8 @@
     .jumbotron .lang-logo img {
       max-width: 100%; }
 
+  td {
+    line-height: 2.5;
+    vertical-align: middle;
+  }
+
