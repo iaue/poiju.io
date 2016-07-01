@@ -106,7 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
-  <div class="alert alert-warning alert-dismissible fade in" role="alert" style="top: 0; left: 0; position: absolute;">
+  <div class="alert alert-warning alert-dismissible fade in" id="disclaimer" role="alert" style="top: 0; left: 0; position: absolute;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -144,13 +144,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Spinner end */
 
   //localStorage.clear()
-
+  // Close the disclaimer in case it has been shown:
   if ( localStorage.getItem( "disclaimerShown" ) === "true" )
   {
     $(".alert").alert('close')
   }
 
-  localStorage.setItem( "disclaimerShown", "true" ) 
+  //localStorage.clear()
+
+  $("#disclaimer").on('close.bs.alert', function () {
+    console.log( "closed" )
+    localStorage.setItem( "disclaimerShown", "true" )
+  })
 
   var mapInitialized = false;
 
