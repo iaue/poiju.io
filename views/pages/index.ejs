@@ -120,7 +120,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div id="sidr" style="z-index: 1;">
     <!-- Your content -->
-    <img width="260" src="poiju-logo-menu.png">
+    <div style="background-color: black">
+      <img style="margin: 10px 0 0 0" width="260" src="poiju-logo-menu.png">
+    </div>
     <ul>
       <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + '\nLat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
       <li><a onClick="alert( 'Kartta-aineiston lähde: Liikennevirasto. Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.' );">Lisenssitiedot</a></li>
