@@ -55,10 +55,12 @@
   <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
   <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
   <link href='components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+  <link href='components/sidr/dist/stylesheets/jquery.sidr.dark.min.css' rel='stylesheet' />
   <link href='stylesheets/tether.min.css' rel='stylesheet' />
   <script src="js/addtohomescreen.js"></script>
   <script src="components/local-storage-js/storage.min.js"></script>
   <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="components/sidr/dist/jquery.sidr.min.js"></script>
   <script src=" js/tether.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -66,7 +68,7 @@
 
   // SETTINGS:
   var defaultLocation = [ 23.772788 , 61.509346 ]
-  var locationUpdateInterval = 3000;
+  var locationUpdateInterval = 10000;
   var maxBounds = [
     [ 18.708052 , 58.714757 ], // Southwest coordinates
     [ 31.847700 , 70.343238 ]  // Northeast coordinates
@@ -106,12 +108,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
   </div>
 
+  <button type="button" class="btn btn-secondary" style="top: 0; left: 0; position: absolute; margin: 10px 0 0 10px" id="side-menu"><img width="20" src="images/menu.png"/></button>
+
   <div class="alert alert-warning alert-dismissible fade in" id="disclaimer" role="alert" style="top: 0; left: 0; position: absolute;">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
     <strong>Tervetuloa POIJU.IO appiin!</strong> Muistathan, että tämä sovellus on kehitysvaiheessa eikä sovellu turvalliseen navigointiin. Datasta puuttuvat esimerkiksi kivien karttamerkit, joten vältä erityisesti matalikkoja ja tarkista aina reittivalintasi virallisesta merikartasta.
   </div>
+
+  <div id="sidr">
+    <!-- Your content -->
+    <ul>
+      <li><img width="260" src="poiju-logo-small.png"></li>
+      <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + ' Lat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
+      <li><a onClick="alert( 'Kartta-aineiston lähde: Liikennevirasto. Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.' );">Lisenssitiedot</a></li>
+    </ul>
+  </div>
+
+  <script>
+  $(document).ready(function() {
+    $('#side-menu').sidr();
+  });
+  </script>
 
   <script>
 
@@ -218,7 +237,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   function updateLocation() {
 
     navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = [ position.coords.longitude, position.coords.latitude ];
+      pos = [ position.coords.longitude, position.coords.latitude ];
 
       // Update boat marker position on map:
       updateMarkerPosition( pos );
@@ -228,7 +247,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       if ( elem ) {
         elem.remove();
       }
-
     }, function() {
       handleLocationError(true);
     },
@@ -252,7 +270,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   map.addControl(new mapboxgl.Navigation({position: 'top-right'}));
-  var geoLocateControl = new mapboxgl.Geolocate({position: 'top-left'});
+  var geoLocateControl = new mapboxgl.Geolocate({position: 'bottom-left'});
   geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])})
   map.addControl( geoLocateControl );
 
