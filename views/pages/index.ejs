@@ -118,10 +118,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <strong>Tervetuloa POIJU.IO appiin!</strong> Muistathan, että tämä sovellus on kehitysvaiheessa eikä sovellu turvalliseen navigointiin. Datasta puuttuvat esimerkiksi kivien karttamerkit, joten vältä erityisesti matalikkoja ja tarkista aina reittivalintasi virallisesta merikartasta.
   </div>
 
-  <div id="sidr" style="z-index: 1;">
+  <div id="sidr" style="z-index: 1;overflow: auto;">
     <!-- Your content -->
     <div style="background-color: black">
-      <img style="margin: 0 0 0 0" width="260" src="poiju-logo-menu.png">
+      <img style="margin: 0 0 0 0; top: 0 " width="260" src="poiju-logo-menu.png">
     </div>
     <ul>
       <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + '\nLat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
@@ -129,38 +129,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </ul>
     <div style='margin: 10px 0 0 15px;'>
       <table>
-        <tr><td><strong>Merimerkit:</strong></td></tr>
+        <tr><td colspan="2"><strong>Merimerkit:</strong></td></tr>
         <tr>
-          <td width="30" align="center"  ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_N.svg" width="20"/></td><td>Pohjoisviitta</td>
+          <td width="40" align="center"  ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_N.svg" width="20"/></td><td>Pohjoisviitta</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_S.svg" width="20"/></td><td>Eteläviitta</td>
+          <td width="40" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_S.svg" width="20"/></td><td>Eteläviitta</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_E.svg" width="20"/></td><td>Itäviitta</td>
+          <td width="40" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_E.svg" width="20"/></td><td>Itäviitta</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_W.svg" width="20"/></td><td>Länsiviitta</td>
+          <td width="40" align="center" ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_W.svg" width="20"/></td><td>Länsiviitta</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><span style="color: green;" width="20">•</span></td><td>Oikea</td>
+          <td width="40" align="center" ><span style="color: green;" width="20">•</span></td><td>Oikea</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><span style="color: red;" width="20">•</span></td><td>Vasen</td>
+          <td width="40" align="center" ><span style="color: red;" width="20">•</span></td><td>Vasen</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/lighthouse-15.svg" width="20"/></td><td>Loisto</td>
+          <td width="40" align="center" ><img src="diagrams/lighthouse-15.svg" width="20"/></td><td>Loisto</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_IsolatedDanger_simple_Beacon.svg" width="20"></td><td>Kari</td>
+          <td width="40" align="center" ><img src="diagrams/NChart_ECDIS_IsolatedDanger_simple_Beacon.svg" width="20"></td><td>Kari</td>
         </tr>
         <tr>
-          <td width="30" align="center" ><img src="diagrams/monument-15.svg" width="20"></td><td>Kummeli</td>
+          <td width="40" align="center" ><img src="diagrams/monument-15.svg" width="20"></td><td>Kummeli</td>
         </tr>
       </table>
     </div>
-    <div class="rocksDisclaimer" style="font-size: 0.8rem;"><p>Huom: karttaan ei ole merkitty yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
-
+    <div class="rocksDisclaimer"><p><strong>Huom:</strong> karttaan ei ole merkitty yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
   </div>
 
   <!-- Add swipe control to menu -->
