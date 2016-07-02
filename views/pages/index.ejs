@@ -129,7 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </ul>
     <div style='margin: 10px 0 0 15px;'>
       <table>
-        <thead><strong>Merimerkit:</strong></thead>
+        <tr><td><strong>Merimerkit:</strong></td></tr>
         <tr>
           <td width="30" align="center"  ><img src="diagrams/NChart_ECDIS_Cardinal_simple_Beacon_N.svg" width="20"/></td><td>Pohjoisviitta</td>
         </tr>
@@ -152,11 +152,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <td width="30" align="center" ><img src="diagrams/lighthouse-15.svg" width="20"/></td><td>Loisto</td>
         </tr>
         <tr>
+          <td width="30" align="center" ><img src="diagrams/NChart_ECDIS_IsolatedDanger_simple_Beacon.svg" width="20"></td><td>Kari</td>
+        </tr>
+        <tr>
           <td width="30" align="center" ><img src="diagrams/monument-15.svg" width="20"></td><td>Kummeli</td>
         </tr>
       </table>
     </div>
+    <div><p>Huom: karttaan ei ole merkitty yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
+
+    <!-- Small modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+
   </div>
+
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        ...
+      </div>
+    </div>
+  </div>
+
+  <!-- Add swipe control to menu -->
+  <script src="//cdn.jsdelivr.net/jquery.touchswipe/1.6.15/jquery.touchSwipe.min.js"></script>
+  <script>
+    $('#sidr').swipe( {
+        //Single swipe handler for left swipes
+        swipeLeft: function () {
+            $.sidr('close', 'sidr');
+        },
+        swipeRight: function () {
+            // do nothing
+        },
+        //Default is 75px, set to 0 for demo so any distance triggers swipe
+        threshold: 45
+    });
+</script>
 
   <script>
   $(document).ready(function() {
