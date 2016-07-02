@@ -21,7 +21,7 @@ var https_options = {
 //localStorage.clear();
 
 // Set cache on:
-var cacheOn = false;
+var cacheOn = true;
 
 // enable ssl redirect
 app.use(sslRedirect());
