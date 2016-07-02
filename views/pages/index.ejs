@@ -57,19 +57,21 @@
   <link href='stylesheets/main.css' rel='stylesheet' />
   <link href='components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
   <link href='components/sidr/dist/stylesheets/jquery.sidr.dark.min.css' rel='stylesheet' />
+  <link href='components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css' rel='stylesheet' />
   <link href='stylesheets/tether.min.css' rel='stylesheet' />
   <script src="js/addtohomescreen.js"></script>
   <script src="components/local-storage-js/storage.min.js"></script>
   <script src="components/jquery/dist/jquery.min.js"></script>
   <script src="components/sidr/dist/jquery.sidr.min.js"></script>
-  <script src=" js/tether.min.js"></script>
+  <script src="js/tether.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
 
   <script>
 
   // SETTINGS:
   var defaultLocation = [ 23.772788 , 61.509346 ]
-  var locationUpdateInterval = 10000;
+  var locationUpdateInterval = 5000;
   var maxBounds = [
     [ 18.708052 , 58.714757 ], // Southwest coordinates
     [ 31.847700 , 70.343238 ]  // Northeast coordinates
@@ -87,6 +89,11 @@
    maxDisplayCount: 5,
    startDelay: 5
   });
+
+  // Update location is on by default:
+  if ( localStorage.getItem('updateLoc') !== 'false' ) {
+    localStorage.setItem('updateLoc', 'true')
+  }
   </script>
 </head>
 <body style="margin: 0px; width: 100%; height: 100%;">
@@ -118,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <strong>Tervetuloa POIJU.IO appiin!</strong> Muistathan, että tämä sovellus on kehitysvaiheessa eikä sovellu turvalliseen navigointiin. Datasta puuttuvat esimerkiksi kivien karttamerkit, joten vältä erityisesti matalikkoja ja tarkista aina reittivalintasi virallisesta merikartasta.
   </div>
 
-  <div id="sidr" style="z-index: 1;overflow: auto;">
+  <div id="sidr" style="z-index: 1; overflow: auto;">
     <!-- Your content -->
     <div style="background-color: black">
       <img style="margin: 0 0 0 0; top: 0 " width="260" src="poiju-logo-menu.png">
@@ -127,7 +134,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + '\nLat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
       <li><a onClick="alert( 'Kartta-aineiston lähde: Liikennevirasto. Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.' );">Lisenssitiedot</a></li>
     </ul>
-    <div style='margin: 10px 0 0 15px;'>
+    <div style='margin: 10px 15px 0 15px;'>
       <table>
         <tr><td colspan="2"><strong>Merimerkit:</strong></td></tr>
         <tr>
@@ -160,6 +167,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </table>
     </div>
     <div class="rocksDisclaimer"><p><strong>Huom:</strong> karttaan ei ole merkitty yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
+
+    <div style='margin: 10px 15px 0 15px;'>
+      <table>
+        <tr><td colspan="2"><strong>Paikannusasetukset:</strong></td></tr>
+        <tr>
+          <td>Päivitä:</td><td align="right"><input type="checkbox" name="update-location"/></td>
+        </tr>
+
+        <tr>
+          <td>Seuraa:</td><td align="right"><input type="checkbox" name="follow-location"/></td>
+        </tr>
+      </table>
+    </div>
+    <div style="padding-bottom: 80px"/>
   </div>
 
   <!-- Add swipe control to menu -->
@@ -179,8 +200,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <script>
   $(document).ready(function() {
-    $('#side-menu').sidr();
+    $('#side-menu').sidr( { onCloseEnd : resetMenuScroll } );
   });
+
+  // Reset scroll on menu - currently not working:
+  function resetMenuScroll() {
+    $('#sidr').scrollTop();
+  }
+
+  $("[name='update-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('updateLoc') === 'true' ? true : false , onSwitchChange : updateLocSetting });
+  $("[name='follow-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('followLoc') === 'true' ? true : false , onSwitchChange : followLocSetting });
+
+  function updateLocSetting( event, state ) {
+    localStorage.setItem( 'updateLoc' , state );
+  }
+
+  function followLocSetting( event, state ) {
+    localStorage.setItem( 'followLoc' , state );
+    console.log( state )
+  }
+
   </script>
 
   <script>
@@ -252,6 +291,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {
       map.setCenter( coordinates )
       mapInitialized = true;
+    }
+
+    if ( localStorage.getItem('followLoc') === 'true'  )
+    {
+      map.flyTo({
+          center: coordinates,
+          options: { curve : 0.01, speed: 0.1}
+      });
     }
 
     map.getSource('boat').setData( {
@@ -366,7 +413,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       // Set interval for updating marker position:
       window.setInterval(function() {
           
-          updateLocation();
+          if ( localStorage.getItem('updateLoc') === 'true' ) {
+            updateLocation();
+          }
+
+          else {
+            locationErrorMarker();
+          }
 
       }, locationUpdateInterval );
 

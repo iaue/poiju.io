@@ -23,6 +23,7 @@
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.2",
     "jquery": "^3.0.0",
-    "sidr": "^2.2.1"
+    "sidr": "^2.2.1",
+    "bootstrap-switch": "^3.3.2"
   }
 }
