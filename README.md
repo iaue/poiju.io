@@ -1,4 +1,4 @@
-# Nässy Plotter [![Sponsored by Chilicorn.org](https://img.shields.io/badge/sponsored%20by-chilicorn.org-brightgreen.svg)](http://chilicorn.org)
+# POIJU.IO [![Sponsored by Chilicorn.org](https://img.shields.io/badge/sponsored%20by-chilicorn.org-brightgreen.svg)](http://chilicorn.org)
 
 - NodeJS plotter server for Raspberry Pi boat computer.
 - Mapbox GL JS
@@ -15,3 +15,5 @@ List of packages and services in use:
 - Application favicons: http://realfavicongenerator.net/
 - SSL signing: https://www.cloudflare.com/
 - Heroku SSL redirect: https://www.npmjs.com/package/heroku-ssl-redirect
+
+More information and usage instructions coming soon.
