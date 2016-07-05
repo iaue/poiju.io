@@ -15,5 +15,7 @@ List of packages and services in use:
 - Application favicons: http://realfavicongenerator.net/
 - SSL signing: https://www.cloudflare.com/
 - Heroku SSL redirect: https://www.npmjs.com/package/heroku-ssl-redirect
+- Mobile app icons: https://makeappicon.com
+- Mobile app launch screen images: Asset Catalog Creator http://www.bridgetech.io/
 
 More information and usage instructions coming soon.
