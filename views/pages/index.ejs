@@ -59,6 +59,7 @@
   <link href='components/sidr/dist/stylesheets/jquery.sidr.dark.min.css' rel='stylesheet' />
   <link href='components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css' rel='stylesheet' />
   <link href='stylesheets/tether.min.css' rel='stylesheet' />
+  <link href='stylesheets/mapbox-gl-geocoder.css' rel='stylesheet' />
   <script src="js/addtohomescreen.js"></script>
   <script src="components/local-storage-js/storage.min.js"></script>
   <script src="components/jquery/dist/jquery.min.js"></script>
@@ -66,6 +67,7 @@
   <script src="js/tether.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+  <script src='js/mapbox-gl-geocoder.js'></script>
 
   <script>
 
@@ -187,6 +189,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div style='margin: 30px 15px 0 15px;'>
       <a href="https://go.taplause.com/BkyuTguL" style="color: grey;" target="_blank">Anna palautetta</a>
     </div>
+    <div id="searchLocation"/>
     <div style="padding-bottom: 80px"/>
   </div>
 
@@ -378,6 +381,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var geoLocateControl = new mapboxgl.Geolocate({position: 'bottom-left'});
   geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])})
   map.addControl( geoLocateControl );
+
+  var geoCoderControl = new mapboxgl.Geocoder({position: 'bottom-right', placeholder: 'Etsi kohdetta', container: document.getElementById('searchLocation'), country: 'fi', types: 'region,postcode,place,locality,neighborhood,address,poi'})
+  map.addControl( geoCoderControl );
 
   map.on('load', function () {
 
