@@ -9,11 +9,8 @@
   }
 .mapboxgl-ctrl-geocoder {
   position:relative;
-  width:33.3333%;
   min-width:240px;
-  max-width:360px;
   z-index:1;
-  border-radius:3px;
   }
 
 .mapboxgl-ctrl-geocoder input[type='text'] {
