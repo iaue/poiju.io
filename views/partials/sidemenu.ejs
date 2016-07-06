@@ -1,0 +1,90 @@
+<div id="sidr" style="z-index: 1; overflow: auto;">
+    <!-- Your content -->
+    <div style="background-color: black">
+      <img style="margin: 0 0 0 0; top: 0 " width="260" src="poiju-logo-menu.png">
+    </div>
+    
+    <div>
+      <div id="searchLocation" />
+    </div>
+
+    <ul>
+      <li><a onClick="alert('Long: ' + localStorage.getItem( 'lastLong' ) + '\nLat: ' + localStorage.getItem( 'lastLat' ) );">Sijainti</a></li>
+      <li><a onClick="alert( 'The MIT License (MIT)\n\nCopyright (c) 2016 POIJU.IO\n\nhttps://github.com/iaue/poiju.io\n\nKartta-aineiston lähteet:\nLiikennevirasto 06/2016. Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.\nMaanmittauslaitoksen Maastotietokanta 06/2016\n' );">Lisenssitiedot</a></li>
+    </ul>
+
+    <% include ../partials/merimerkit.ejs %>
+    
+    <div class="rocksDisclaimer"><p><strong>Huom:</strong> karttaan ei ole merkitty kaikkia yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
+
+    <div style='margin: 10px 15px 0 15px;'>
+      <table>
+        <tr><td colspan="2"><strong>Paikannusasetukset:</strong></td></tr>
+        <tr>
+          <td>Päivitä:</td><td align="right"><input type="checkbox" name="update-location"/></td>
+        </tr>
+
+        <tr>
+          <td>Seuraa:</td><td align="right"><input type="checkbox" name="follow-location"/></td>
+        </tr>
+      </table>
+    </div>
+
+    <ul style="margin-top: 40px">
+      <li>
+        <div style="display:flex;justify-content:center;align-items:center;">
+          <a href="https://go.taplause.com/BkyuTguL" style="color: grey;" target="_blank">Anna palautetta</a>
+        </div>
+      </li>
+
+      <li>
+        <form action="https://www.paypal.com/cgi-bin/webscr" style="display:flex;justify-content:center;align-items:center; padding: 15px" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+          ">
+          <input type="image" style="display: block" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+      </li>
+    </ul>
+    <div style="padding-bottom: 80px;"></div>
+  </div>
+
+  <!-- Add swipe control to menu -->
+  <script src="//cdn.jsdelivr.net/jquery.touchswipe/1.6.15/jquery.touchSwipe.min.js"></script>
+  <script>
+  $('#sidr').swipe( {
+      //Single swipe handler for left swipes
+      swipeLeft: function () {
+          $.sidr('close', 'sidr');
+      },
+      //Default is 75px, set to 0 for demo so any distance triggers swipe
+      threshold: 45,
+
+      allowPageScroll:"vertical"
+  });
+  </script>
+
+  <script>
+  $(document).ready(function() {
+    $('#side-menu').sidr( { onCloseEnd : resetMenuScroll } );
+  });
+
+  // Reset scroll on menu - currently not working:
+  function resetMenuScroll() {
+    $('#sidr').scrollTop();
+  }
+
+  $("[name='update-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('updateLoc') === 'true' ? true : false , onSwitchChange : updateLocSetting });
+  $("[name='follow-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('followLoc') === 'true' ? true : false , onSwitchChange : followLocSetting });
+
+  function updateLocSetting( event, state ) {
+    localStorage.setItem( 'updateLoc' , state );
+  }
+
+  function followLocSetting( event, state ) {
+    localStorage.setItem( 'followLoc' , state );
+    console.log( state )
+  }
+
+  </script>

@@ -1,5 +1,95 @@
-<title>Node.js Getting Started on Heroku</title>
-<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+<title>POIJU.IO - Ilmaiset merikartat koko Suomen alueelle</title>
+  <meta property="og:title" content="POIJU.IO" />
+  <meta property="og:description" content="POIJU.IO - Ilmaiset merikartat koko Suomen alueelle. Toimii myös mobiililaitteilla home screenille asennettuna webappina!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.poiju.io/" />
+  <meta property="og:image" content="http://www.poiju.io/poiju-logo.png" />
+  <meta property="og:image:secure_url" content="https://www.poijuio.com/poiju-logo.png" />
+  <meta property="fb:app_id" content="1217568344949951" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+  <script>
+  <% include ../js/mapbox-gl.js %>
+  <% include ../js/spin.min.js %>
+  </script>
+
+  <!-- Favicons start -->
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Favicons end -->
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="POIJU.IO">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="mobile-web-app-capable" content="yes">
+
+
+  <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
+  <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
+  <link href='stylesheets/main.css' rel='stylesheet' />
+  <link href='components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+  <link href='components/sidr/dist/stylesheets/jquery.sidr.dark.min.css' rel='stylesheet' />
+  <link href='components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css' rel='stylesheet' />
+  <link href='stylesheets/tether.min.css' rel='stylesheet' />
+  <link href='stylesheets/mapbox-gl-geocoder.css' rel='stylesheet' />
+  <script src="js/addtohomescreen.js"></script>
+  <script src="components/local-storage-js/storage.min.js"></script>
+  <script src="components/jquery/dist/jquery.min.js"></script>
+  <script src="components/sidr/dist/jquery.sidr.min.js"></script>
+  <script src="js/tether.min.js"></script>
+  <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+  <script src='js/mapbox-gl-geocoder.js'></script>
+
+  <script>
+
+  // SETTINGS:
+  var defaultLocation = [ 23.772788 , 61.509346 ]
+  var locationUpdateInterval = 5000;
+  var maxBounds = [
+    [ 18.708052 , 58.714757 ], // Southwest coordinates
+    [ 31.847700 , 70.343238 ]  // Northeast coordinates
+  ];
+
+  // Try to avoid crashing:
+  var minZoom = 10;
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+
+
+  addToHomescreen({
+    modal: 1,
+   skipFirstVisit: true,
+   maxDisplayCount: 5,
+   startDelay: 5
+  });
+
+  // Update location is on by default:
+  if ( localStorage.getItem('updateLoc') !== 'false' ) {
+    localStorage.setItem('updateLoc', 'true')
+  }
+  </script>
