@@ -27,61 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <button type="button" class="btn btn-secondary" style="top: 0; left: 0; position: absolute; margin: 10px 0 0 10px" id="side-menu"><img width="20" src="images/menu.png"/></button>
 
-  <div class="alert alert-warning alert-dismissible fade in" id="disclaimer" role="alert" style="top: 0; left: 0; position: absolute;">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <strong>Tervetuloa POIJU.IO appiin!</strong> Muistathan, että tämä sovellus on kehitysvaiheessa eikä sovellu turvalliseen navigointiin. Datasta puuttuvat esimerkiksi kivien karttamerkit, joten vältä erityisesti matalikkoja ja tarkista aina reittivalintasi virallisesta merikartasta.
-  </div>
-
-  <div class="modal fade license-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body" style="text-align:center">
-          <p>
-            <strong>The MIT License (MIT)</strong>
-          </p>
-          <p><strong>Copyright © 2016 POIJU.IO</strong><br/><br/>
-          <a href="https://github.com/iaue/poiju.io" style="color: black">https://github.com/iaue/poiju.io</a>
-          </p>
-          <p><strong>Kartta-aineiston lähteet:</strong><br/><br/>
-          Liikennevirasto 06/2016<br/>Ei navigointikäyttöön. Ei täytä virallisen merikartan vaatimuksia.<br/><br/>
-          Maanmittauslaitoksen Maastotietokanta 06/2016
-          </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade location-modal-sm" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body" style="text-align:center">
-          <p>
-            <p>
-              <strong>Lat: </strong><span class="lat"></span>
-            </p>
-            <p>
-              <strong>Long: </strong><span class="long"></span>
-            </p>
-          </p>
-        </div>
-        <div class="modal-footer">
-           <button type="button" onclick="myNavFunc()" class="btn btn-default">Avaa kartalla</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <% include ../partials/modals.ejs %>
 
   <% include ../partials/sidemenu.ejs %>
 
@@ -295,6 +241,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   });
 
+  </script>
+
+  <script type="text/javascript">
+    document.getElementById('routeFile').onchange = function(evt) {
+        if(!window.FileReader) return; // Browser is not compatible
+
+        var reader = new FileReader();
+
+        reader.onload = function(evt) {
+            if(evt.target.readyState != 2) return;
+            if(evt.target.error) {
+                alert('Error while reading file');
+                return;
+            }
+
+            var parser = new DOMParser();
+            var doc = parser.parseFromString( evt.target.result, "application/xml");
+
+            console.log( toGeoJSON.kml( doc ) );
+
+            var sourceObj = new mapboxgl.GeoJSONSource({
+               data: toGeoJSON.kml( doc )
+            });
+
+            map.addSource('routePlan', sourceObj); // add
+
+             map.addLayer({
+                "id": "route",
+                "type": "line",
+                "source": "routePlan",
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "orange",
+                    "line-width": 2
+                }
+            }, 'sand');
+            //map.removeSource('some id');  // remove
+
+        };
+
+        reader.readAsText(evt.target.files[0]);
+    };
   </script>
 
 </body>

@@ -36,7 +36,11 @@
       <li><a data-toggle="modal" data-target=".location-modal-sm">Sijainti</a></li>
       <li><a data-toggle="modal" data-target=".license-modal-sm">Lisenssitiedot</a></li>
     </ul>
-
+     <div style='margin: 15px;'>
+      <div style='margin-bottom: 5px'>Lataa reittisuunnitelma (beta):</div>
+      <input type="file" id="routeFile" accept=".kml" style="font-size: 0.7em">
+    </div>
+    <ul></ul>
     <% include ../partials/merimerkit.ejs %>
     
     <div class="rocksDisclaimer"><p><strong>Huom:</strong> karttaan ei ole merkitty kaikkia yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>

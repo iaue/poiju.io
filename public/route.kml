@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>POIJU.IO example map</name>
+		<description><![CDATA[This is an example map for using POIJU.IO route planner feature.]]></description>
+		<Folder>
+			<name>Route plan</name>
+			<Placemark>
+				<name>Example route 1</name>
+				<styleUrl>#line-000000-1-nodesc</styleUrl>
+				<LineString>
+					<tessellate>1</tessellate>
+					<coordinates>23.7721825,61.5092687,0.0 23.7656593,61.5105788,0.0 23.7659159,61.518683,0.0 23.7685776,61.5269509,0.0 23.7563896,61.5584428,0.0 23.7079811,61.5936595,0.0 23.7083244,61.6018248,0.0 23.7002563,61.6148847,0.0 23.6817169,61.6153743,0.0 23.6824036,61.6175776,0.0 23.6805153,61.6210046,0.0</coordinates>
+				</LineString>
+			</Placemark>
+		</Folder>
+		<Style id='line-000000-1-nodesc-normal'>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>1</width>
+			</LineStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<Style id='line-000000-1-nodesc-highlight'>
+			<LineStyle>
+				<color>ff000000</color>
+				<width>2.0</width>
+			</LineStyle>
+			<BalloonStyle>
+				<text><![CDATA[<h3>$[name]</h3>]]></text>
+			</BalloonStyle>
+		</Style>
+		<StyleMap id='line-000000-1-nodesc'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#line-000000-1-nodesc-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#line-000000-1-nodesc-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+	</Document>
+</kml>
