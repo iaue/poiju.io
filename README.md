@@ -1,3 +1,4 @@
+![alt tag](https://github.com/iaue/poiju.io/blob/master/public/poiju-logo-menu.png?raw=true)
 # POIJU.IO [![Sponsored by Chilicorn.org](https://img.shields.io/badge/sponsored%20by-chilicorn.org-brightgreen.svg)](http://chilicorn.org)
 
 - NodeJS plotter server for Raspberry Pi boat computer.
