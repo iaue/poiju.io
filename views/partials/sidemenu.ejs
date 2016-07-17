@@ -36,16 +36,16 @@
       <li><a data-toggle="modal" data-target=".location-modal-sm">Sijainti</a></li>
       <li><a data-toggle="modal" data-target=".license-modal-sm">Lisenssitiedot</a></li>
     </ul>
-     <div style='margin: 15px;'>
-      <div style='margin-bottom: 5px'>Lataa reittisuunnitelma (beta):</div>
-      <input type="file" id="routeFile" accept=".kml" style="font-size: 0.7em">
+     <div style='padding: 15px;'>
+      <div style='margin-bottom: 5px'>Lataa reittisuunnitelma <span style="font-size: 0.8em">(beta)</span>:</div>
+      <input type="file" id="routeFile" accept=".kml" style="font-size: 0.7em; max-width: 230px">
     </div>
     <ul></ul>
     <% include ../partials/merimerkit.ejs %>
     
     <div class="rocksDisclaimer"><p><strong>Huom:</strong> karttaan ei ole merkitty kaikkia yksittäisiä kiviä - tarkista kivien sijainti merikartasta.</p></div>
 
-    <div style='margin: 10px 15px 0 15px;'>
+    <div style='padding: 10px 15px 0 15px;'>
       <table>
         <tr><td colspan="2"><strong>Paikannusasetukset:</strong></td></tr>
         <tr>
@@ -86,6 +86,9 @@
       swipeLeft: function () {
           $.sidr('close', 'sidr');
       },
+      swipeRight: function () {
+          // Do nothing
+      },
       //Default is 75px, set to 0 for demo so any distance triggers swipe
       threshold: 45,
 
@@ -100,7 +103,8 @@
 
   // Reset scroll on menu - currently not working:
   function resetMenuScroll() {
-    $('#sidr').scrollTop();
+    document.getElementById('sidr').scrollTop = 0
+    //$('#sidr').scrollTop();
   }
 
   $("[name='update-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('updateLoc') === 'true' ? true : false , onSwitchChange : updateLocSetting });
