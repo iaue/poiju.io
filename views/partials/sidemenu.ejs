@@ -43,8 +43,8 @@
     </script>
 
     <ul>
-      <li><a data-toggle="modal" data-target=".location-modal-sm">Sijainti</a></li>
-      <li><a data-toggle="modal" data-target=".license-modal-sm">Lisenssitiedot</a></li>
+      <li><a data-toggle="modal" id="locationMenu" data-target=".location-modal-sm">Sijainti</a></li>
+      <li><a data-toggle="modal" id="licenseMenu" data-target=".license-modal-sm">Lisenssitiedot</a></li>
     </ul>
      <div style='padding: 15px;'>
       <div style='margin-bottom: 5px'>Lataa reittisuunnitelma <span style="font-size: 0.8em">(beta)</span>:</div>
@@ -59,12 +59,12 @@
     <div style='padding: 10px 15px 0 15px;'>
       <table>
         <tr><td colspan="2"><strong>Paikannusasetukset:</strong></td></tr>
-        <tr>
+        <tr id="locationUpdateSwitch">
           <td>Päivitä:</td><td align="right"><input type="checkbox" name="update-location"/></td>
         </tr>
 
         <tr>
-          <td>Seuraa:</td><td align="right"><input type="checkbox" name="follow-location"/></td>
+          <td>Seuraa:</td><td align="right"><input id="locationTrackingSwitch" type="checkbox" name="follow-location"/></td>
         </tr>
       </table>
     </div>
