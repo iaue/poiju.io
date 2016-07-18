@@ -45,3 +45,8 @@
     cursor: pointer;
   }
 
+  body, html { 
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
+

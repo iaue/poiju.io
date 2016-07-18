@@ -1,4 +1,4 @@
-<div id="sidr" style="z-index: 1; overflow: auto;">
+<div id="sidr" style="z-index: 1; overflow-y: auto; overflow-x: hidden;">
     <!-- Your content -->
     <div style="background-color: black">
       <img style="margin: 0 0 0 0; top: 0 " width="260" src="poiju-logo-menu.png">
@@ -32,13 +32,23 @@
       }
     </script>
 
+    <script type="text/javascript">
+      function clearRoute() {
+        document.getElementById("routeFile").value = "";
+        map.removeLayer('route');
+        map.removeSource('routePlan')
+        localStorage.removeItem('savedRoutePlan');
+        $('#clearRouteButton').hide();
+      }
+    </script>
+
     <ul>
       <li><a data-toggle="modal" data-target=".location-modal-sm">Sijainti</a></li>
       <li><a data-toggle="modal" data-target=".license-modal-sm">Lisenssitiedot</a></li>
     </ul>
      <div style='padding: 15px;'>
       <div style='margin-bottom: 5px'>Lataa reittisuunnitelma <span style="font-size: 0.8em">(beta)</span>:</div>
-      <input type="file" id="routeFile" accept=".kml" style="font-size: 0.7em; max-width: 230px">
+      <input type="file" id="routeFile" accept=".kml" style="font-size: 0.7em; max-width: 230px"><button class="btn btn-default" id="clearRouteButton" style="" onclick="clearRoute()">Poista</button>
     </div>
     <ul></ul>
     <% include ../partials/merimerkit.ejs %>
@@ -118,5 +128,7 @@
     localStorage.setItem( 'followLoc' , state );
     console.log( state )
   }
+
+  $("#clearRouteButton").hide()
 
   </script>
