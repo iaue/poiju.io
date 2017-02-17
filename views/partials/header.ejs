@@ -13,8 +13,9 @@
   <meta charset="utf-8" />
 
   <meta name="viewport" content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
+  
   <script>
-  <% include ../js/mapbox-gl.js %>
   <% include ../js/spin.min.js %>
   </script>
 
@@ -48,7 +49,8 @@
   <meta name="mobile-web-app-capable" content="yes">
 
 
-  <link href='stylesheets/mapbox-gl.css' rel='stylesheet' />
+  <!-- <link href='stylesheets/mapbox-gl.css' rel='stylesheet' /> -->
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
   <link href='stylesheets/addtohomescreen.css' rel='stylesheet' />
   <link href='stylesheets/main.css' rel='stylesheet' />
   <link href='components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
@@ -63,7 +65,8 @@
   <script src="js/tether.min.js"></script>
   <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="components/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
-  <script src='js/mapbox-gl-geocoder.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'>
+  <!-- <script src='js/mapbox-gl-geocoder.js'></script> -->
   <script src='js/togeojson.js'></script>
 
   <script>
@@ -80,6 +83,7 @@
   var minZoom = 10;
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibWlsa2FuZGNyZWFtIiwiYSI6ImNpb3dxcHZzazAwOWJ3OWtqNHNjdTgzNjMifQ.KK7QXbd-tSQzfH96p9rpPg';
+  var fbAppId = '1217568344949951';
 
 
   addToHomescreen({

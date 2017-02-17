@@ -21,7 +21,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.7&appId=1217568344949951";
+  js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.7&appId=" + fbAppId;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -92,7 +92,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   var map = new mapboxgl.Map({
       attributionControl : false,
       container: 'map',
-      style: 'mapbox://styles/milkandcream/ciq5uxcra005nq7ndrm766s76',
+      style: 'mapbox://styles/milkandcream/ciq8l0lox0084danift92gyxv',
       center: initialPosition,
       zoom: 12,
       maxBounds: maxBounds,
@@ -185,12 +185,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
-  map.addControl(new mapboxgl.Navigation({position: 'top-right'}));
-  var geoLocateControl = new mapboxgl.Geolocate({position: 'bottom-left'});
-  geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])})
-  map.addControl( geoLocateControl );
+  var navigationControl = new mapboxgl.NavigationControl()
+  map.addControl( navigationControl , 'top-right' );
 
-  var geoCoderControl = new mapboxgl.Geocoder({ placeholder: 'Etsi kohdetta', container: document.getElementById('searchLocation'), country: 'fi', types: 'region,postcode,place,locality,neighborhood,address'})
+  var geoLocateControl = new mapboxgl.GeolocateControl();
+  geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])});
+  map.addControl( geoLocateControl, 'bottom-left' );
+
+  var geoCoderControl = new MapboxGeocoder({ accessToken: mapboxgl.accessToken })
+  /*, placeholder: 'Etsi kohdetta', container: document.getElementById('searchLocation'), country: 'fi', types: 'region,postcode,place,locality,neighborhood,address'} OLD SETTINGS, NOT WORKING*/
   map.addControl( geoCoderControl );
 
   map.on('load', function () {
