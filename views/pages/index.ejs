@@ -192,9 +192,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])});
   map.addControl( geoLocateControl, 'bottom-left' );
 
-  var geoCoderControl = new MapboxGeocoder({ accessToken: mapboxgl.accessToken })
+  //var geoCoderControl = new MapboxGeocoder({ accessToken: mapboxgl.accessToken })
   /*, placeholder: 'Etsi kohdetta', container: document.getElementById('searchLocation'), country: 'fi', types: 'region,postcode,place,locality,neighborhood,address'} OLD SETTINGS, NOT WORKING*/
-  map.addControl( geoCoderControl );
+  //map.addControl( geoCoderControl );
 
   map.on('load', function () {
 
