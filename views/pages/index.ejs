@@ -186,7 +186,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   var navigationControl = new mapboxgl.NavigationControl()
-  map.addControl( navigationControl , 'top-right' );
+  map.addControl( navigationControl , 'bottom-right' );
 
   var geoLocateControl = new mapboxgl.GeolocateControl();
   geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])});
