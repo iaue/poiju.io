@@ -96,7 +96,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       center: initialPosition,
       zoom: 12,
       maxBounds: maxBounds,
-      minZoom: minZoom
+      //minZoom: minZoom
   });
 
   // Update marker position and map center:
@@ -192,6 +192,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   geoLocateControl.on( 'geolocate' , function(data) { updateLocation( [ data.coords.longitude , data.coords.latitude ])});
   map.addControl( geoLocateControl, 'bottom-left' );
 
+  map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    country: 'fi',
+    types: 'region,postcode,place,locality,neighborhood,address',
+    placeholder: 'Etsi kohdetta',
+    limit: 3,
+    minLength: 3,
+    zoom: 10,
+    minZoom: 10
+
+
+}));
+
   //var geoCoderControl = new MapboxGeocoder({ accessToken: mapboxgl.accessToken })
   /*, placeholder: 'Etsi kohdetta', container: document.getElementById('searchLocation'), country: 'fi', types: 'region,postcode,place,locality,neighborhood,address'} OLD SETTINGS, NOT WORKING*/
   //map.addControl( geoCoderControl );
@@ -256,6 +269,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       handleLocationError(false);
     }
   });
+
+  $(".mapboxgl-ctrl-geocoder").appendTo("#searchLocation");
 
   </script>
 
