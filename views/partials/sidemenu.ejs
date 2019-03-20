@@ -1,4 +1,4 @@
-<div id="sidr" style="z-index: 1; overflow-y: auto; overflow-x: hidden;">
+<div id="sidr" style="z-index: 1; overflow-y: scroll; overflow-x: hidden;" scroll="yes">
     <!-- Your content -->
     <div style="background-color: black">
       <img style="margin: 0 0 0 0; top: 0 " width="260" src="poiju-logo-menu.png">
@@ -105,8 +105,13 @@
 
   // Reset scroll on menu - currently not working:
   function resetMenuScroll() {
-    document.getElementById('sidr').scrollTop = 0
+    document.getElementById('sidr').scrollTop = 0;
     //$('#sidr').scrollTop();
+  }
+
+  // Reset scroll on menu - currently not working:
+  function enableScroll() {
+    document.getElementById('sidr').scrollTop = 0;
   }
 
   $("[name='update-location']").bootstrapSwitch({size: 'mini', state : localStorage.getItem('updateLoc') === 'true' ? true : false , onSwitchChange : updateLocSetting });
