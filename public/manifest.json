@@ -1,5 +1,6 @@
 {
 	"name": "Poiju",
+	"display": "standalone",
 	"icons": [
 		{
 			"src": "\/android-chrome-36x36.png",

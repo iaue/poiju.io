@@ -3,9 +3,10 @@
 <head>
   <% include ../partials/header.ejs %>
 </head>
-<body style="margin: 0px; width: 100%; height: 100%; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none; background-color: black;" 
+<body style="margin: 0;padding: 0; width: 100%; height: 100%; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none; background-color: black;-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;overflow: hidden; -webkit-overflow-scrolling: touch" 
  unselectable="on"
- onselectstart="return false;" >
+ onselectstart="return false;"
+ scroll="no">
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5S5TFX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -16,16 +17,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5S5TFX');</script>
 <!-- End Google Tag Manager -->
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fi_FI/sdk.js#xfbml=1&version=v2.7&appId=" + fbAppId;
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script src="js/inobounce.min.js"></script>
 
-  <div id="map" style="margin: 0px; width: 100%; height: 100%;"></div>
+  <div id="map" style="position: absolute; margin: 0;padding 0; width: 100%; height: 100%;overflow:hidden;"></div>
   
   <!-- Splash screen -->
   <div id="splash-screen" style="margin: 0px; width: 100%; height: 100%; z-index: 2;  background: black; top: 0; left: 0; position: absolute;">

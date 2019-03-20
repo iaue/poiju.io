@@ -12,7 +12,7 @@
   "dependencies": {
     "bower": "^1.7.9",
     "ejs": "2.4.1",
-    "express": "4.13.3",
+    "express": "^4.16.4",
     "heroku-ssl-redirect": "0.0.3",
     "http": "0.0.0",
     "https": "^1.0.0",
